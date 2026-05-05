@@ -1,0 +1,90 @@
+.skills{
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+}
+
+.card{
+	border: 20px;
+	border-radius: 22px;
+	border-color: blue;
+	margin: 20px;
+	padding: 40px;
+	width: 150px;
+	height: 200px;
+	background-color: #2E0079; 
+	transition: background 0.25s;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	box-shadow: 0 0 30px rgba(0, 0, 0, 0.15);
+}
+
+.card:hover {
+	background: #6F07A3; 
+	transform: translateY(-2px);
+    box-shadow: 0 0 5px 5px rgba(255, 105, 180, 1.0);
+}
+
+.skillName{
+	font-size: 18px;
+	color: #FFBBD1;
+	text-align: center;
+	font-family: "Doto", system-ui;
+}
+
+#noSkills{
+	font-size: 30px;
+	color: darkorchid;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.progressText, .progressRing{
+	padding-top: -5px;
+	margin: 4px 0;
+}
+
+.progressText{
+	font-size: 15px;
+	color: #FFBBD1;
+	margin: 5px 0;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.progressRing svg{
+	width: 100%;
+	height: 100%;
+}
+
+.progressRing{
+	width: 70px;
+	height: 70px;
+	position: relative;
+	margin: 10px auto;
+}
+
+.progressRing .bg{
+	fill: white;
+}
+
+.progressRing.high .ring{
+	fill: #3EB489;
+}
+.progressRing.medium .ring{
+	fill: #FFD300;
+}
+.progressRing.low .ring{
+	fill: #C41E3A;
+}
+
+.ringText {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	color: #2C066A;
+	font-size: 14px;
+	font-weight: bold;
+	font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+	
