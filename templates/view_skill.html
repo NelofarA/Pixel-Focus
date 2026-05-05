@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}{{ skill_name }}{% endblock %}
+
+{% block content %}
+<h1>{{ skill_name }}</h1>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bitcount+Single+Ink:wght@100..900&family=Doto:wght@100..900&family=DynaPuff:wght@400..700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/flashcards.css') }}">
+
+<h2>Add a Flashcard</h2>
+<form class ="formy" method="POST">
+    <input type="text" name="front" placeholder="Front (Question/Term)" required>
+    <input type="text" name="back" placeholder="Back (Answer)" required>
+    <button type="submit">Add Flashcard</button>
+</form>
+
+<h2>Flashcards</h2>
+<div class="flashcard-container">
+    {% for id, front, back in flashcards %}
+    <div class="flashcard">
+        <div class="front">{{ front }}</div>
+        <div class="back">{{ back }}</div>
+        <form method="POST" action="{{ url_for('delete_flashcard', flashcard_id=id) }}">
+            <button type="submit" class="delete-button">Delete</button>
+        </form>
+    </div>
+    {% endfor %}
+    {% if not flashcards %}
+        <p>No flashcards yet.</p>
+    {% endif %}
+</div>
+
+<a href="{{ url_for('flashcards') }}">Back to skills</a>
+
+{% endblock %}

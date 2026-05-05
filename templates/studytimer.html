@@ -1,0 +1,147 @@
+<!-- <!DOCTYPE html>
+
+
+<head>  -->
+{% extends "base.html" %}
+
+{% block title %}Study Timer{% endblock %}
+    <!-- <title>Study Timer</title> -->
+
+{% block head %}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bitcount+Single+Ink:wght@100..900&family=Doto:wght@100..900&family=DynaPuff:wght@400..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+{% endblock %}
+
+{% block content %}
+<!-- </head>
+
+
+<body>
+
+<main> -->
+
+    <div class="container">
+    
+        
+
+        <div class="timer_display"> 
+            <div class="main_timer">
+                <select id="skill_select" name="saved_skills" required>
+                    <option value="" disabled selected> Select Skill </option>
+                    {% for skill_id, skill_name in skills_dict.items() %}
+                    <option value="{{ skill_id }}">{{ skill_name }}</option>
+                    {% endfor %}
+                </select>
+
+                <div id="timer">25:00</div>
+                <div id="timer_controls" class="controls">
+                    <div id="time_imput">
+                        <input type="number" class="set_time" id="timer_duration" name="timer_duration" min="10" max="300" value="25"> 
+                        <span>min</span>
+                    </div>
+                    <button id="start_timer" class="startBtn">Start</button>
+                </div>
+            </div>
+            <p id="instructions" class="text" >To pause click <kbd>Space</kbd>, Reset hit <kbd>R</kbd></p>
+            <div id="status_focus" class="active_focus">Start Focusing?
+                <!--Space is used to pause the timer as the mouse is track for movement and you will lose health for moving your mouse-->
+            </div>
+        </div>
+    
+
+
+
+        <!--Character/game visual + elements-->
+        <div class="visual" id="gamesetup">
+            <div id="game_screen" class="background">
+                <img id="game_image" src="../static/game_scene.png" alt="Background Image">
+            </div>
+
+            <div class="character_info">
+            <!--Character info + visual
+            Insert character image here. Might give the option to name the character that will be 
+            displayed over the little animal
+            NOTE WAS NOT COMPLETED (leaving this here anyways)
+             -->
+
+            </div>
+
+            <div class="hazard-container">
+               <div id="progress">
+                    <progress id="progress_bar" value="0" max="100"></progress>
+                    <p id="progress_precent" class="text"> Hazard Level 0%</p>
+                </div>
+                <div id="hazard_fill" class="hazard_height">
+                    <img id="hazard_img" src="../static/raising_water.png" alt="Hazard Image">
+                    <!--Hazard fill is the rising hazard that will eventually kill the character if it reaches the character.-->
+                </div> 
+            </div>
+              
+                <!-- pivoting from 3HP visual/setup to heath bar with 3 strike before
+                 emptied because it is apparently significantly easier SO MUCH code was deleted
+                 it was long and overcomplicated-->
+        </div>
+
+    
+    
+    </div>
+
+    <div class="overlay_hidden" id="ending_popup">
+            <h2 id="ending_title" class="text">Ending Title</h2>
+            <p id="ending_message" class="text">Ending message goes here.</p>
+            <img id="ending_image" src="" alt="Ending Image">
+            <button id="closeOverlayButton" class="startBtn">Continue Focusing?</button>
+    </div>
+            
+    
+    <div id="info_container">
+    <div class="info">
+       
+        <h3>About Timer</h3>
+        <p>
+            <strong>Requirements:</strong> you need to have <strong>at least one skill</strong> in the flashcard section.
+            No time inputted can be lower than 10 mins. 
+            
+        </p>
+        <br>
+        <h3>How it works</h3>
+        <p>
+          Click start the timer and start working, just make sure not to move your mouse!
+            The timer dectects any changes in visiblity mouse movement, window changing, etc. So focus and study hard!
+            If you interact with screen in any way the hazard level will go up. You have <strong>3 chances</strong>, after losing one a cooldown will begin. If you lose your last life it 
+            is game over! 
+
+            Complete a session and you will get rewarded! Only completed session earn XP. 
+        </p>
+    
+        <br>
+        <h3>Scoring & Rewards</h3>
+        <p>
+            The more time you spend the more you earn:
+        </p>
+        <ul>
+            <li><strong>10 - 20 mins</strong>  → <strong> 1 XP per 4 mins</strong></li>
+            <li><strong>21 - 45 mins </strong> → <strong>1 XP per 3 mins</strong></li>
+            <li><strong>46 mins and greater </strong> → <strong>1 XP per 2 mins</strong></li>
+        </ul>
+        <br>
+        <p>
+            <strong>💡 Tip:</strong> If you accidently start a session
+            the start timer button won't work unless you hit R, so make sure to reset!
+        </p>
+    </div>
+    </div>
+
+    <!-- so much of ending popup was deleted for simplicity, initially their was two depending on
+     good or bad outcome, now it is only one popup and title + image changes based off outcome
+     may or may not still and the confetti and gloomy overlay on top-->
+<!-- </main> -->
+<!-- src="{{ url_for('static', filename='script.js') }}"-->
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+{% endblock %}
+<!-- </body>
+</html>  -->

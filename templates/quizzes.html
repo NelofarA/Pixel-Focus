@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block title %}Quizzes{% endblock %}
+
+{% block head %}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bitcount+Single+Ink:wght@100..900&family=Doto:wght@100..900&family=DynaPuff:wght@400..700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/select_quiz.css') }}">
+{% endblock %}
+
+{% block content %}
+<h1>Take Quiz for:</h1>
+
+<form method="POST">
+    <select name="skill_id" required>
+        <option value="">--Select a skill--</option>
+        {% for skill_id, name in skills %}
+            <option value="{{ skill_id }}">{{ name }}</option>
+        {% endfor %}
+    </select>
+    <button type="submit">Start Quiz</button>
+</form>
+
+<div class="info">
+    <h3>About Quizzes</h3>
+    <p>
+        <strong>Requirements:</strong> You need at least <strong>10 flashcards</strong> in a skill to unlock its quiz. 
+        Each quiz randomly selects 10 questions from your flashcard set.
+    </p>
+    
+    <br>
+    
+    <h3>Scoring & Rewards</h3>
+    <p>
+        Test your knowledge and earn XP based on your score:
+    </p>
+    <ul>
+        <li><strong>100%</strong> → <strong>20 XP</strong></li>
+        <li><strong>90% - 99%</strong> → <strong>15 XP</strong></li>
+        <li><strong>70% - 89%</strong> → <strong>10 XP</strong></li>
+        <li><strong>Below 70%</strong> → Keep practicing! No XP earned.</li>
+    </ul>
+    
+    <br>
+    
+    <p>
+        <strong>💡 Tip:</strong> The better you know your flashcards, the higher your score! 
+        Review your flashcards before taking a quiz to maximize your XP gains.
+    </p>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Quiz{% endblock %}
+
+{% block head %}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bitcount+Single+Ink:wght@100..900&family=Doto:wght@100..900&family=DynaPuff:wght@400..700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/start_quiz.css') }}">
+
+{% endblock %}
+
+{% block content %}
+<h1>Quiz</h1>
+<form method="POST">
+    {% for flashcard_id, front, back in flashcards %}
+        <div class="quiz-question">
+            <label><strong>Q{{ loop.index }}: {{ front }}</strong></label>
+            <input type="text" name="flashcard_{{ flashcard_id }}" value="{{ flashcard_ids }}" required>
+        </div>
+        <br>
+    {% endfor %}
+    <button type="submit">Submit Quiz</button>
+</form>
+<a href="{{ url_for('quizzes') }}">Back to quizzes</a>
+{% endblock %}

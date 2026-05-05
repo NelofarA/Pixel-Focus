@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}About Us{% endblock %}
+
+{% block head %}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Annie+Use+Your+Telescope&family=Bitcount+Single+Ink:wght@100..900&family=Doto:wght@100..900&family=DynaPuff:wght@400..700&display=swap" rel="stylesheet"> 	<link rel="stylesheet" href="{{ url_for('static', filename='css/base2Style.css') }}">
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/aboutUs.css') }}">
+
+{% endblock %}
+
+{% block content %}
+
+<h1>About Us</h1>
+
+<div id="info_card">
+    <h2>The Creators: </h2>
+    <ul>
+        <li>Nelofar Abdul Wahid</li>
+        <li>Sarah Valencia</li>	
+        <li>Bhargavi Balamurali</li>
+    </ul>
+
+    <h2>What is this website?</h2>
+    <p>
+    If you have a hard time focusing on a task then is app is for you!
+    </p>
+    <p>This website is for students to better focus on their studies through flashcards, quizzes, and a timer meant for studying. 
+        This is a skills based studying app, input up to 5 skills and start your journey and track your progress on the home page. 
+        Earn XP for good scores on quiz section or by completing a study session on the timer.
+     </p>
+    <h2>Feature</h2>
+        <ul>
+            <li>Flashcards for all you notes</li>
+            <li>Quizzes to test your knowledge</li>
+            <li>Consequences/Anti-game based study timer</li>
+        </ul>
+</div>
+{% endblock %}

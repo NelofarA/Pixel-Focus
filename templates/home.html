@@ -1,0 +1,137 @@
+{% extends "base.html" %}
+
+{% block title %}Homepage{% endblock %}
+
+{% block head %}
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Annie+Use+Your+Telescope&family=Bitcount+Single+Ink:wght@100..900&family=Doto:wght@100..900&family=DynaPuff:wght@400..700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/card.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/homeStyle.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<h1 id="welcome" class="headerText">Welcome, {{ username }}!</h1>
+
+<!-- Part 1: Skill charts & stats for each skill-->
+<h2 class="headerText">Skill Cards</h2>
+
+<!-- To get the average accuracy for the quiz scores, consider storing the 
+scores in some list or array and calculate the average and then use it to 
+add on the skill card. Maybe use Flask to store the value in a dictionary
+or list
+ -->
+ 
+<div class="skills">
+	{% if skills %}
+		{% for skill in skills %}
+			<div class="card">
+				<h2 class="skillName">{{ skill.name }}</h2>
+				
+				<!--Add accuracy here-->
+				<h3 class="progressText">Accuracy Average:</h3>
+				<div class="progressRing
+				{% if skill.accuracy >= 80 %}
+					high
+				{% elif skill.accuracy >= 50 %}
+					medium
+				{% else %}
+					low
+				{% endif %}">
+					<svg viewBox="0 0 100 100">		
+						<circle class="ring" cx="50" cy="50" r="48"></circle>
+						<circle class="bg" cx="50" cy="50" r="40"></circle>	
+						<div class="ringText">{{ skill.accuracy }}%</div>
+					</svg>
+				</div>
+				
+				<!--Add Time spent here-->
+				<h3 class="progressText">Time Spent: {{ skill.time_spent }}mins</h3>
+			</div>
+		{% endfor %}
+	{% else %}
+		<p id="noSkills">No progress available yet. Create flashcards to begin your progress! </p>
+	{% endif %}
+
+</div>
+
+<!-- Part 2: Level Bar-->
+<h2 class="headerText">Level Bar</h2>
+<div class="levelAndXP">
+	<progress id="levelBar" value="{{ userInfo.xp }}" max="100"></progress>
+	<h2 id="numXPandLevel">XP: {{ userInfo.xp }}&emsp;&emsp;Level: {{ userInfo.level }}</h2>
+	<!-- <h2id="xpNum">XP: {{ userInfo.xp }} </h2>
+	<h2 id="levelNum">Level: {{ userInfo.level }} </h2> -->
+</div>
+
+<div id="infoContainer">
+	<div id="progressInfo">
+		<h3>Your Progress:</h3>
+		<p>The <b>homepage</b> is where you will find your progress here on this website. As you keep making and editing flashcards, 
+		attempting quizzes, and focusing using the timer, your progress will be reflected here. 
+		
+		<br><br><b>To start making progress, create flashcards.</b> 
+		</p>
+	</div>
+	
+	<div id="skillCardInfo">
+		<h4>Skill Cards:</h4>
+		<p>Your skills and work towards those skills are shown here through <b>skill cards.</b> 
+		Each card will have the skill's <b>name, accuracy average,</b> and the <b>time spent</b> on the skill. 
+		</p>
+	</div>
+	
+	<div id="accuracyInfo">
+		<h5>Accuracy Average:</h5>
+		<p>This is the <b>average score</b> of <b>all your past quiz attempts</b> out of 100%, as shown in the ring below the name. 
+		If it shows <b>-1.0%</b>, that just means you <b>haven't attempted a quiz</b> for that skill.
+		
+		<br><br>Note the <b>color</b> of the ring is based on your <b>average</b>.
+		</p>
+	
+		<ul>
+			<li id="green"> If your average is 80% or above, the ring will be green. 
+			That's a good standing!</li> 
+			<li id="yellow"> If it is between 50% and 79% inclusive, the ring will be yellow. 
+			Not bad, but there’s definitely room to improve.</li>
+			<li id="red"> If the average is below 50%, then the ring will be red.
+			A sign of failure! 
+		</ul>
+		
+		<p>But don’t worry, you can always take more quizzes and boost your average, so keep at it!</p>
+	</div>
+	
+	<div id="timeInfo">
+		<h5>Time Spent:</h5>
+		<p>This is the <b>total number of minutes</b> from the <b>focus timer</b> after a session has been <b>completed.</b> 
+		This means that incomplete sessions do not count. 
+		
+		<br><br>For more info on how that works, head to the <b>Focus Timer</b> page.
+		
+		<br><br>Note that the default value will be 0 mins upon making a skill. 
+		</p>
+	</div>
+	
+	<div id="levelInfo">
+		<h4>Level Bar:</h4>
+		<p>This bar shows your progress towards <b>leveling up</b> by getting <b>xp</b>. You can get xp through <b>completing sessions</b>
+		in the <b>focus timer</b> or by getting <b>good scores</b> on the <b>quizzes</b>. Here, you can see exactly how much xp you have, 
+		how close you are to leveling up, and what level you are at.
+		
+		<br><br>The progress bar will reflect how much xp you have out of 100xp. 
+		
+		<br><br><b>Once you have 100xp or more, you level up.</b> Upon leveling up, the progress bar <b>resets</b> to empty and the 
+		amount of xp will also <b>reset</b> to 0xp. 
+		
+		<br><br>Also note that even if you delete flashcards, your xp and level will remain.
+		</p>
+	</div>
+
+</div>
+
+{% endblock %}
+
+
